@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/main :: head"></head>
+<body>
+    <div th:replace="layout/main :: nav"></div>
+    
+    <div class="container mt-5">
+        <div class="alert alert-danger">
+            <h4 class="alert-heading">Произошла ошибка!</h4>
+            <p th:text="${error}">Ошибка</p>
+            <hr>
+            <p class="mb-0">
+                <a href="/" class="btn btn-primary">Вернуться на главную</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html> 

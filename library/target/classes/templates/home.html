@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/main :: head"></head>
+<body>
+    <div th:replace="layout/main :: nav"></div>
+    
+    <div class="container mt-5">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Добро пожаловать в библиотеку!</h1>
+            <p class="lead">Здесь вы можете управлять своей коллекцией книг</p>
+            <hr class="my-4">
+            <div sec:authorize="!isAuthenticated()">
+                <p>Для начала работы необходимо войти в систему или зарегистрироваться</p>
+                <a class="btn btn-primary btn-lg me-2" th:href="@{/login}" role="button">Войти</a>
+                <a class="btn btn-success btn-lg" th:href="@{/users/register}" role="button">Зарегистрироваться</a>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <p>Выберите нужный раздел в меню выше</p>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Мои книги</h5>
+                                <p class="card-text">Просмотр и управление вашими книгами</p>
+                                <a th:href="@{/books}" class="btn btn-primary">Перейти к книгам</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Жанры</h5>
+                                <p class="card-text">Управление жанрами книг</p>
+                                <a th:href="@{/genres}" class="btn btn-primary">Перейти к жанрам</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Профиль</h5>
+                                <p class="card-text">Управление вашим профилем</p>
+                                <a th:href="@{/users/profile(phoneNumber=${#authentication.name})}" class="btn btn-primary">Перейти в профиль</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

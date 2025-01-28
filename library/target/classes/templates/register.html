@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/main :: head"></head>
+<body>
+    <div th:replace="layout/main :: nav"></div>
+    
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Регистрация</h3>
+                    </div>
+                    <div class="card-body">
+                        <div th:replace="fragments/messages :: messages"></div>
+                        <form th:action="@{/users/register}" th:object="${user}" method="post">
+                            <div class="mb-3">
+                                <label for="userName" class="form-label">Имя пользователя</label>
+                                <input type="text" class="form-control" id="userName" th:field="*{userName}" 
+                                       required maxlength="50">
+                            </div>
+                            <div class="mb-3">
+                                <label for="phoneNumber" class="form-label">Номер телефона</label>
+                                <input type="tel" class="form-control" id="phoneNumber" th:field="*{phoneNumber}"
+                                       pattern="[0-9]{11}" title="Введите 11 цифр номера телефона" required>
+                                <small class="form-text text-muted">Формат: 11 цифр без пробелов и символов</small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Пароль</label>
+                                <input type="password" class="form-control" id="password" th:field="*{password}"
+                                       required minlength="6">
+                                <small class="form-text text-muted">Минимум 6 символов</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

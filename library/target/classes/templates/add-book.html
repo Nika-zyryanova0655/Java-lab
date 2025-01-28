@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/main :: head"></head>
+<body>
+    <div th:replace="layout/main :: nav"></div>
+    
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Добавление книги</h3>
+                    </div>
+                    <div class="card-body">
+                        <div th:replace="fragments/messages :: messages"></div>
+                        <form th:action="@{/books/add}" th:object="${book}" method="post">
+                            <div class="mb-3">
+                                <label for="bookName" class="form-label">Название книги</label>
+                                <input type="text" class="form-control" id="bookName" th:field="*{bookName}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="genre" class="form-label">Жанр</label>
+                                <select class="form-select" id="genre" th:field="*{genre}" required>
+                                    <option value="">Выберите жанр</option>
+                                    <option th:each="genre : ${genres}"
+                                            th:value="${genre.genreId}"
+                                            th:text="${genre.genreName}">
+                                    </option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Добавить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
